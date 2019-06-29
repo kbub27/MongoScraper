@@ -7,30 +7,47 @@ module.exports = app => {
         res.render('index');
     });
 
-    app.get('/articles', (req, res) => {
+    app.get('/scrape', (req, res) => {
         axios.get('https://na.leagueoflegends.com/en/news/').then(response => {
 
             const $ = cheerio.load(response.data);
+            const result = {};
 
             $('.panelizer-view-mode').each(function (i, element) {
-                const result = {};
 
                 result.title = $(this)
                     .find('h4')
                     .children('a')
                     .text();
-                result.link = $(this)
+                result.link = 'https://na.leagueoflegends.com/en/news' + $(this)
                     .find('h4')
                     .children('a')
                     .attr('href');
+                result.summary = $(this)
+                    .find('.teaser-content')
+                    .children('.field')
+                    .text();
 
                 db.Article.create(result)
                     .then(dbArticle => console.log(dbArticle))
                     .catch(err => console.log(err));
             })
-            res.render('articles');
-        })
+        });
     });
+
+    app.get('/articles', (req, res) => {
+        db.Article.find({})
+            .then((dbArticle) => {
+                var article = {
+                    article: dbArticle
+                }
+                console.log(article)
+                res.render('articles', article);
+            })
+            .catch((err) => {
+                res.send(err);
+            })
+    })
 
     app.get('/articles/:id', (req, res) => {
         db.Article.findOne({
