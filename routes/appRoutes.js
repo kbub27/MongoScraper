@@ -55,7 +55,7 @@ module.exports = app => {
     });
 
     app.get('/savedArticles', (req, res) => {
-        db.Article.findAll({saved: true })
+        db.Article.find({saved: true })
             .then(dbArticle => res.json(dbArticle))
             .catch(err => res.json(err))
     });
