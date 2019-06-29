@@ -1,4 +1,4 @@
-$('#saveArticle').click(function () {
+$(document).on('click', '.saveArticle', function () {
     const id = $(this).attr('data-id');
 
     $.ajax({
@@ -9,9 +9,10 @@ $('#saveArticle').click(function () {
         .then(function (data) {
             console.log(data);
         })
-});
+        $(this).hide();
+    });
 
-$('#saveComment').click(function () {
+$('.saveComment').click(function () {
     const id = $(this).attr('data-id');
 
     $.ajax({
