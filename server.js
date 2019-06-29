@@ -25,4 +25,8 @@ app.use(express.static('public'));
 // Mongo connection
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+require('./routes')(app);
+
 app.listen(PORT, () => console.log('Listening on ' + PORT + '!'));
+
+module.exports = app;
