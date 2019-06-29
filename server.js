@@ -6,6 +6,9 @@ const bars = require('express-handlebars');
 // Mongo uri
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoScraper';
 
+// Set PORT
+const PORT = 3000;
+
 // Initialize express
 const app = express();
 
@@ -22,3 +25,4 @@ app.use(express.static('public'));
 // Mongo connection
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+app.listen(PORT, () => console.log('Listening on ' + PORT + '!'));
