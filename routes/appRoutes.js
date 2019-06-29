@@ -52,7 +52,7 @@ module.exports = app => {
             .catch(err => res.render('error'))
     });
 
-    app.get('/articles/:id', (req, res) => {
+    app.post('/articles/:id', (req, res) => {
         db.Article.findOneAndUpdate({
             _id: req.params.id
         },
@@ -61,8 +61,8 @@ module.exports = app => {
                     saved: true
                 }
             })
-            .then(dbArticle => res.json(dbArticle))
-            .catch(err => res.json(err))
+            .then(dbArticle => console.log(dbArticle))
+            .catch(err => res.send('error'))
     });
 
     app.get('/savedArticles', (req, res) => {

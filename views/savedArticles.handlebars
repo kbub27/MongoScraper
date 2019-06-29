@@ -1,0 +1,17 @@
+<div id="savedarticles">
+    <ul class="list-group">
+        {{#each article}}
+        <li class="list-group-item">
+            {{title}} <h1>{{value}}</h1><br/>
+            <br>
+            {{summary}} {{value}}<br />
+            {{link}} {{value}}<br />
+            {{img}} {{value}}<br>
+            {{saved}} {{value}}<br>
+            <button type="button" class="btn btn-primary" href='comment' id="comment" data-id="{{_id}} {{value}}">Comment on this post!</button>
+            <br>
+            <br>
+        </li>
+        {{/each}}
+    </ul>
+</div>
