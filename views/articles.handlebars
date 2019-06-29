@@ -2,10 +2,13 @@
     <ul class="list-group">
         {{#each article}}
         <li class="list-group-item">
-            {{title}} <h1>{{value}}</h1><br />
+            {{title}} <h1>{{value}}</h1><br/>
+            <br>
+            {{_id}} {{value}}<br>
             {{summary}} {{value}}<br />
             {{link}} {{value}}<br />
             {{img}} {{value}}<br>
+            {{saved}} {{value}}<br>
             <button type="button" class="btn btn-primary">Save Article</button>
             <br>
             <br>
