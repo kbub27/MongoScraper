@@ -43,21 +43,24 @@ module.exports = app => {
     app.get('/articles', (req, res) => {
         db.Article.find({})
             .then(dbArticle => {
-                var article = {
+                const article = {
                     article: dbArticle
                 }
                 console.log(article)
                 res.render('articles', article);
             })
-            .catch((err) => {
-                res.send(err);
-            })
+            .catch(err => res.render('error'))
     });
 
     app.get('/savedArticles', (req, res) => {
         db.Article.find({saved: true })
-            .then(dbArticle => res.json(dbArticle))
-            .catch(err => res.json(err))
+            .then(dbArticle => {
+                const saved = {
+                    article: dbArticle
+                }
+                res.render('savedArticles', saved)
+            })
+            .catch(err => res.render('error'))
     });
 
     app.get('/savedArticles/:id', (req, res) => {
@@ -66,7 +69,7 @@ module.exports = app => {
         })
             .populate('Comment')
             .then(dbArticle => res.json(dbArticle))
-            .catch(err => res.json(err))
+            .catch(err => res.render('error'))
     });
 
     app.post('/savedArticles/:id', (req, res) => {
