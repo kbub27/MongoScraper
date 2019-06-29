@@ -52,8 +52,21 @@ module.exports = app => {
             .catch(err => res.render('error'))
     });
 
+    app.get('/articles/:id', (req, res) => {
+        db.Article.findOneAndUpdate({
+            _id: req.params.id
+        },
+            {
+                $set: {
+                    saved: true
+                }
+            })
+            .then(dbArticle => res.json(dbArticle))
+            .catch(err => res.json(err))
+    });
+
     app.get('/savedArticles', (req, res) => {
-        db.Article.find({saved: true })
+        db.Article.find({ saved: true })
             .then(dbArticle => {
                 const saved = {
                     article: dbArticle
