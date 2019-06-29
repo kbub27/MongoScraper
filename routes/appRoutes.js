@@ -27,6 +27,10 @@ module.exports = app => {
                     .find('.teaser-content')
                     .children('.field')
                     .text();
+                result.img = 'https://na.leagueoflegends.com/en/news' + $(this)
+                    .find('.file-image')
+                    .children('img')
+                    .attr('src')
 
                 db.Article.create(result)
                     .then(dbArticle => console.log(dbArticle))

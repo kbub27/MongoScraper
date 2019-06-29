@@ -1,11 +1,14 @@
-<div class="container">
-    <div id="articles">
-        <ul>
-            {{#each article}}
-                {{title}}: {{value}}<br/>
-                {{summary}}: {{value}}<br/>
-                {{link}}: {{value}}<br>
-            {{/each}}
-        </ul>
-    </div>
+<div id="articles">
+    <ul class="list-group">
+        {{#each article}}
+        <li class="list-group-item">
+            {{title}} <h1>{{value}}</h1><br />
+            {{summary}} {{value}}<br />
+            {{link}} {{value}}<br />
+            {{img}} {{value}}<br>
+            <br>
+            <br>
+        </li>
+        {{/each}}
+    </ul>
 </div>
