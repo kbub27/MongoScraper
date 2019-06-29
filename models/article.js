@@ -16,6 +16,10 @@ const ArticleSchema = new Schema({
         required: true
     },
     img: String,
+    saved: {
+        type: Boolean,
+        default: false
+    },
     comment: {
         type: Schema.Types.ObjectId,
         ref: 'comment'

@@ -36,12 +36,13 @@ module.exports = app => {
                     .then(dbArticle => console.log(dbArticle))
                     .catch(err => console.log(err));
             })
+            res.redirect('/articles');
         });
     });
 
     app.get('/articles', (req, res) => {
         db.Article.find({})
-            .then((dbArticle) => {
+            .then(dbArticle => {
                 var article = {
                     article: dbArticle
                 }
@@ -51,9 +52,15 @@ module.exports = app => {
             .catch((err) => {
                 res.send(err);
             })
-    })
+    });
 
-    app.get('/articles/:id', (req, res) => {
+    app.get('/savedArticles', (req, res) => {
+        db.Article.findAll({saved: true })
+            .then(dbArticle => res.json(dbArticle))
+            .catch(err => res.json(err))
+    });
+
+    app.get('/savedArticles/:id', (req, res) => {
         db.Article.findOne({
             _id: req.params.id
         })
@@ -62,7 +69,7 @@ module.exports = app => {
             .catch(err => res.json(err))
     });
 
-    app.post('/articles/:id', (req, res) => {
+    app.post('/savedArticles/:id', (req, res) => {
         db.Comment.create(req.body)
             .then(dbComment => db.Article.findOneAndUpdate({
                 _id: req.params.id
