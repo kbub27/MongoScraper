@@ -19,7 +19,7 @@ module.exports = app => {
                     .find('h4')
                     .children('a')
                     .text();
-                result.link = 'https://na.leagueoflegends.com/en/news' + $(this)
+                result.link = 'https://na.leagueoflegends.com/' + $(this)
                     .find('h4')
                     .children('a')
                     .attr('href');
@@ -27,7 +27,7 @@ module.exports = app => {
                     .find('.teaser-content')
                     .children('.field')
                     .text();
-                result.img = 'https://na.leagueoflegends.com/en/news' + $(this)
+                result.img = 'https://na.leagueoflegends.com/' + $(this)
                     .find('.file-image')
                     .children('img')
                     .attr('src')
