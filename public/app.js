@@ -12,7 +12,7 @@ $(document).on('click', '.saveArticle', function () {
         $(this).hide();
     });
 
-$('.saveComment').click(function () {
+$(document).on('click', '.saveComment', function () {
     const id = $(this).attr('data-id');
 
     $.ajax({
