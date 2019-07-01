@@ -9,23 +9,25 @@ $(document).on('click', '.saveArticle', function () {
         .then(function (data) {
             console.log(data);
         })
-        $(this).hide();
-    });
+    $(this).hide();
+});
 
-$(document).on('click', '.saveComment', function () {
+$('.saveComment').click(function () {
     const id = $(this).attr('data-id');
+    console.log($('#commentTitle').val());
+    console.log($('#commentBody').val());
 
     $.ajax({
         method: "POST",
         url: "/savedArticles/" + id,
-        data: {
+        comment: {
             // Value taken from title input
-            title: $("#titleinput").val(),
+            title: $("#commentTitle").val(),
             // Value taken from note textarea
-            body: $("#bodyinput").val()
-          }
+            body: $("#commentBody").val()
+        }
     })
-        .then(function (data) {
-            console.log(data);
+        .then(function (comment) {
+            console.log(comment);
         })
 });

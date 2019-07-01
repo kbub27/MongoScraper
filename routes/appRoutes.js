@@ -86,6 +86,7 @@ module.exports = app => {
     });
 
     app.post('/savedArticles/:id', (req, res) => {
+        console.log(req.body)
         db.Comment.create(req.body)
             .then(dbComment => db.Article.findOneAndUpdate({
                 _id: req.params.id

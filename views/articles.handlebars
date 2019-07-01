@@ -1,6 +1,6 @@
 <div id="articles">
     {{#each article}}
-    <div data-id="{{_id}} {{value}}">
+    <div class="articles">
         <div class="card">
             <img src="{{img}}{{value}}" class="card-img-top" alt="leagueImage" style="width: 18rem;">
             <div class="card-body">
@@ -8,8 +8,13 @@
                 <p class="card-text">{{summary}}{{value}}</p>
                 <button type="button" class="btn btn-primary saveArticle" data-id="{{_id}} {{value}}">Save
                     Article</button>
-                <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read Article</a>
+                <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read full Article</a>
             </div>
         </div>
     </div>
     {{/each}}
+    <div>
+        <footer class="navbar navbar-dark bg-dark justify-content-center mt-2">
+            <span class="navbar-brand" id="footerColor">©SMS ~League Edition~</span>
+        </footer>
+    </div>
