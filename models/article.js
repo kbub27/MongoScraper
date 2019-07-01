@@ -22,7 +22,7 @@ const ArticleSchema = new Schema({
     },
     comment: {
         type: Schema.Types.ObjectId,
-        ref: 'comment'
+        ref: 'Comment'
     }
 });
 

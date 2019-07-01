@@ -6,8 +6,10 @@
             <div class="card-body">
                 <h5 class="card-title">{{title}}{{value}}</h5>
                 <p class="card-text">{{summary}}{{value}}</p>
+                {{#unless saved}}
                 <button type="button" class="btn btn-primary saveArticle" data-id="{{_id}} {{value}}">Save
                     Article</button>
+                {{/unless}}
                 <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read full Article</a>
             </div>
         </div>

@@ -6,7 +6,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{title}}{{value}}</h5>
                 <p class="card-text">{{summary}}{{value}}</p>
-                <p class="card-text">{{comment}}{{value}}</p>
+                <p class="card-text commentBody"></p>
                 <button type="button" class="btn btn-primary comment" data-toggle="modal"
                     data-target="#commentModal">Comment</button>
                 <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read full
@@ -28,7 +28,8 @@
                 <div class="modal-body">
                     <div>
                         <input class="form-control m-1" type="text" id="commentTitle" placeholder="Comment Title">
-                        <textarea class="form-control m-1" id="commentBody" rows="5" placeholder="Comment Body"></textarea>
+                        <textarea class="form-control m-1" id="commentBody" rows="5"
+                            placeholder="Comment Body"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -39,8 +40,10 @@
         </div>
     </div>
     {{/each}}
+    {{#if article}}
     <div>
         <footer class="navbar navbar-dark bg-dark justify-content-center mt-2">
             <span class="navbar-brand" id="footerColor">©SMS ~League Edition~</span>
         </footer>
     </div>
+    {{/if}}

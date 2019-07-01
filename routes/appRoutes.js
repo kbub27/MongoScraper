@@ -80,7 +80,7 @@ module.exports = app => {
         db.Article.findOne({
             _id: req.params.id
         })
-            .populate('Comment')
+            .populate('comment')
             .then(dbArticle => res.json(dbArticle))
             .catch(err => res.render('error'))
     });
@@ -88,15 +88,14 @@ module.exports = app => {
     app.post('/savedArticles/:id', (req, res) => {
         console.log(req.body)
         db.Comment.create(req.body)
-            .then(dbComment => db.Article.findOneAndUpdate({
-                _id: req.params.id
-            },
+            .then(dbComment => db.Article.findOneAndUpdate({ _id: req.params.id },
                 {
                     $set: {
                         comment: dbComment
                     }
-                }))
-            .then(dbArticle => res.json(dbArticle))
+                },
+                res.json(dbComment)))
+            .then(dbArticle => console.log(dbArticle))
             .catch(err => res.json(err))
     });
 };

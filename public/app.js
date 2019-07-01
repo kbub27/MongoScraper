@@ -14,20 +14,27 @@ $(document).on('click', '.saveArticle', function () {
 
 $('.saveComment').click(function () {
     const id = $(this).attr('data-id');
+    console.log(id);
     console.log($('#commentTitle').val());
     console.log($('#commentBody').val());
 
     $.ajax({
         method: "POST",
         url: "/savedArticles/" + id,
-        comment: {
-            // Value taken from title input
-            title: $("#commentTitle").val(),
-            // Value taken from note textarea
-            body: $("#commentBody").val()
+        data: {
+            title: $('#commentTitle').val(),
+            body: $('#commentBody').val(),
         }
     })
-        .then(function (comment) {
-            console.log(comment);
+        .then(function (data) {
+            console.log(data);
+            const comm ='<h6 class="text-center">Comments</h6>';
+            const title = '<p class="text-center">' + data.title + '</p>';
+            const body = '<p class="text-center">' + data.body + '</p>';
+
+            if (data._id) {
+                $('.commentBody').append(comm, title, body);
+            }
+
         })
 });
