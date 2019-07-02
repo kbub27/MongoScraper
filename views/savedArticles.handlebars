@@ -4,45 +4,26 @@
         <div class="card">
             <img src="{{img}}{{value}}" class="card-img-top" alt="leagueImage" style="width: 18rem;">
             <div class="card-body">
-                 <h5 class="card-title">{{_id}}{{value}}</h5>
                 <h5 class="card-title">{{title}}{{value}}</h5>
                 <p class="card-text">{{summary}}{{value}}</p>
                 {{#if comment}}
-                <h6 class="text-center">Comments</h6>
-                <p class="text-center">TITLE: {{comment.title}}{{value}}</p>
-                <p class="text-center">BODY: {{comment.body}}{{value}}</p>
+                <h5 class="text-center">Comments</h5>
+                <p class="text-center">{{comment.title}}{{value}}</p>
+                <p class="text-center">{{comment.body}}{{value}}</p>
                 <p class="card-text commentBody"></p>
                 {{/if}}
-                <button type="button" class="btn btn-primary comment" data-toggle="modal"
-                    data-target="#commentModal" data-id="{{_id}}{{value}}">Comment</button>
+                <div class="btns">
+                <button type="button" class="btn btn-primary comment">Comment</button>
                 <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read full
                     Article</a>
+                </div>
             </div>
         </div>
-    </div>
-    {{/each}}
-    <!-- Modal -->
-    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="commentModal">Comment on Article</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <input class="form-control m-1" type="text" id="commentTitle" placeholder="Comment Title">
-                        <textarea class="form-control m-1" id="commentBody" rows="5"
-                            placeholder="Comment Body"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary saveComment">Save Comment</button>
-                </div>
-            </div>
+        <button type="button" class="btn btn-primary saveComment commentInput" data-id="{{_id}}{{value}}">Save Comment to this article!</button>
+        {{/each}}
+        <div class="commentInput">
+            <input class="form-control m-1" type="text" id="commentTitle" placeholder="Comment Title">
+            <textarea class="form-control m-1" id="commentBody" rows="5" placeholder="Comment Body"></textarea>
         </div>
     </div>
     {{#if article}}

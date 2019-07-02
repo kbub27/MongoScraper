@@ -1,3 +1,14 @@
+$(window).on('load', () => {
+    $('.saveComment').hide();
+    $('.commentInput').hide();
+});
+
+$(document).on('click', '.comment', () => {
+    $('.commentInput').show().focus();
+    $('.saveComment').show();
+})
+
+
 $(document).on('click', '.saveArticle', function () {
     const id = $(this).attr('data-id');
 
@@ -13,7 +24,7 @@ $(document).on('click', '.saveArticle', function () {
 });
 
 $(document).on('click', '.saveComment', function () {
-    let id = $('.comment').attr('data-id');
+    const id = $(this).attr('data-id');
     console.log(id);
     console.log($('#commentTitle').val());
     console.log($('#commentBody').val());
@@ -33,11 +44,6 @@ $(document).on('click', '.saveComment', function () {
             })
                 .then(dbArticle => {
                     console.log('Success');
-                    // const comm ='<h6 class="text-center">Comments</h6>';
-                    // const title = '<p class="text-center">' + dbArticle.comment.title + '</p>';
-                    // const body = '<p class="text-center">' + dbArticle.comment.body + '</p>';
-
-                    // $('.commentBody').append(comm, title, body);
                 })
         })
     location.reload();
