@@ -66,22 +66,13 @@ module.exports = app => {
     });
 
     app.get('/savedArticles', (req, res) => {
-        db.Article.find({ saved: true })
+        db.Article.find({ saved: true }).populate('comment')
             .then(dbArticle => {
                 const saved = {
                     article: dbArticle
                 }
                 res.render('savedArticles', saved)
             })
-            .catch(err => res.render('error'))
-    });
-
-    app.get('/savedArticles/:id', (req, res) => {
-        db.Article.findOne({
-            _id: req.params.id
-        })
-            .populate('comment')
-            .then(dbArticle => res.json(dbArticle))
             .catch(err => res.render('error'))
     });
 
@@ -93,9 +84,8 @@ module.exports = app => {
                     $set: {
                         comment: dbComment
                     }
-                },
-                res.json(dbComment)))
-            .then(dbArticle => console.log(dbArticle))
+                }))
+            .then(dbArticle => res.json(dbArticle))
             .catch(err => res.json(err))
     });
 };

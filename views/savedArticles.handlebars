@@ -4,16 +4,23 @@
         <div class="card">
             <img src="{{img}}{{value}}" class="card-img-top" alt="leagueImage" style="width: 18rem;">
             <div class="card-body">
+                 <h5 class="card-title">{{_id}}{{value}}</h5>
                 <h5 class="card-title">{{title}}{{value}}</h5>
                 <p class="card-text">{{summary}}{{value}}</p>
+                {{#if comment}}
+                <h6 class="text-center">Comments</h6>
+                <p class="text-center">TITLE: {{comment.title}}{{value}}</p>
+                <p class="text-center">BODY: {{comment.body}}{{value}}</p>
                 <p class="card-text commentBody"></p>
+                {{/if}}
                 <button type="button" class="btn btn-primary comment" data-toggle="modal"
-                    data-target="#commentModal">Comment</button>
+                    data-target="#commentModal" data-id="{{_id}}{{value}}">Comment</button>
                 <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read full
                     Article</a>
             </div>
         </div>
     </div>
+    {{/each}}
     <!-- Modal -->
     <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -33,13 +40,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary saveComment"
-                        data-id="{{_id}}{{value}}">Save Comment</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary saveComment">Save Comment</button>
                 </div>
             </div>
         </div>
     </div>
-    {{/each}}
     {{#if article}}
     <div>
         <footer class="navbar navbar-dark bg-dark justify-content-center mt-2">

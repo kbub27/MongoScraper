@@ -12,8 +12,8 @@ $(document).on('click', '.saveArticle', function () {
     $(this).hide();
 });
 
-$('.saveComment').click(function () {
-    const id = $(this).attr('data-id');
+$(document).on('click', '.saveComment', function () {
+    let id = $('.comment').attr('data-id');
     console.log(id);
     console.log($('#commentTitle').val());
     console.log($('#commentBody').val());
@@ -26,15 +26,19 @@ $('.saveComment').click(function () {
             body: $('#commentBody').val(),
         }
     })
-        .then(function (data) {
-            console.log(data);
-            const comm ='<h6 class="text-center">Comments</h6>';
-            const title = '<p class="text-center">' + data.title + '</p>';
-            const body = '<p class="text-center">' + data.body + '</p>';
+        .then(data => {
+            $.ajax({
+                method: "GET",
+                url: "/savedArticles",
+            })
+                .then(dbArticle => {
+                    console.log('Success');
+                    // const comm ='<h6 class="text-center">Comments</h6>';
+                    // const title = '<p class="text-center">' + dbArticle.comment.title + '</p>';
+                    // const body = '<p class="text-center">' + dbArticle.comment.body + '</p>';
 
-            if (data._id) {
-                $('.commentBody').append(comm, title, body);
-            }
-
+                    // $('.commentBody').append(comm, title, body);
+                })
         })
+    location.reload();
 });
