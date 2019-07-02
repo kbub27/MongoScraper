@@ -13,13 +13,15 @@
                 <p class="card-text commentBody"></p>
                 {{/if}}
                 <div class="btns">
-                <button type="button" class="btn btn-primary comment">Comment</button>
-                <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read full
-                    Article</a>
+                    <button type="button" class="btn btn-primary comment">Comment</button>
+                    <a type="button" href="{{link}}{{value}}" class="btn btn-primary articleLink" target="_blank">Read
+                        full
+                        Article</a>
+                    <button type="button" class="btn btn-primary saveComment commentInput"
+                        data-id="{{_id}}{{value}}">Save Comment to this article!</button>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary saveComment commentInput" data-id="{{_id}}{{value}}">Save Comment to this article!</button>
         {{/each}}
         <div class="commentInput">
             <input class="form-control m-1" type="text" id="commentTitle" placeholder="Comment Title">
